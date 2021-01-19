@@ -17,22 +17,15 @@ const App = () => {
   const [query, setQuery] = useState('');
   const [weather, setWeather] = useState({});
   const [newWeather, setnewWeather] = useState({});
+  const [coords, setCoords] = useState({});
 
-  const search = evt => {
+  const search = (evt) => {
+
+
     if (evt.key === "Enter") {
+      getCoords(query);
+      getWeatherData();
 
-      fetch(`${googleAPI.base}json?address=${query.replace(" ", "+")}&key=${googleAPI.key}`)
-        .then(res => res.json())
-        .then(result => {
-          console.log(result)
-
-          setnewWeather(result)
-          console.log(newWeather);
-        });
-
-      let lat = newWeather;
-      // .results[0].geometry.location.lat;
-      console.log(lat);
       // let lon = newWeather.results[0].geometry.location.lng;
 
       fetch(`${api.base}forecast?q=${query}&units=metric&appid=${api.key}`)
@@ -43,12 +36,25 @@ const App = () => {
           console.log(result);
         });
 
-      // fetch(`https://api.openweathermap.org/data/2.5/onecall?lat=${lat}&lon=${lon}&exclude=current,minutely,hourly,alerts&appid=24a05065d6a6a1fcdaaa35c2516f9e77`)
+      // 
       //   .then(res => res.json())
       //   .then(result => {
       //     console.log(result);
       //   });
     }
+  }
+  const getCoords = async (query) => {
+    const response = await fetch(`${googleAPI.base}json?address=${query.replace(" ", "+")}&key=${googleAPI.key}`);
+    const data = await response.json();
+    setCoords(data);
+  }
+
+  const getWeatherData = async () => {
+    const lat = await fetch(newWeather.results[0].geometry.location.lng);
+    const lon = await fetch(newWeather.results[0].geometry.location.lon);
+    const response = await fetch(`https://api.openweathermap.org/data/2.5/onecall?lat=${lat}&lon=${lon}&exclude=current,minutely,hourly,alerts&appid=24a05065d6a6a1fcdaaa35c2516f9e77`);
+    const data = await response.json();
+    setnewWeather(data);
   }
 
   const dateBuilder = (d) => {
