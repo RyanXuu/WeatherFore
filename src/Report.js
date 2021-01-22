@@ -3,24 +3,31 @@ import WeatherCard from './WeatherCard';
 
 const Report = ({ weatherData }) => {
 
+  
+  // console.log(weatherData);
+  // console.log(weatherData.daily[0].clouds)
   return (
+   
+    
     <div className="report">
-      <div className="card">
-        <WeatherCard data={weatherData.list[0]} />
+    {/* {weatherData[0].snow} */}
+      {/* <div className="card">
+        <WeatherCard data={weatherData.daily[0]} />
       </div>
       <div className="card">
-        <WeatherCard data={weatherData.list[1]} />
+        <WeatherCard data={weatherData.daily[1]} />
       </div>
       <div className="card">
-        <WeatherCard data={weatherData.list[2]} />
+        <WeatherCard data={weatherData.daily[2]} />
       </div>
       <div className="card">
-        <WeatherCard data={weatherData.list[3]} />
+        <WeatherCard data={weatherData.daily[3]} />
       </div>
       <div className="card">
-        <WeatherCard data={weatherData.list[4]} />
-      </div>
+        <WeatherCard data={this.weatherData.daily[4]} />
+      </div> */}
     </div>
+    
   );
 };
 

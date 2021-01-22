@@ -35,10 +35,10 @@ const WeatherCard = ({ data }) => {
       </div>
       <div className="weather-box">
         <div className="temp">
-          {Math.round(data.main.temp)}°c
+          {/* {Math.round(data.temp.day)}°c */}
         </div>
         <div className="weather">
-          <img src={weatherImg(data.weather[0].main)} width="125" height="100" alt={data.weather[0].main} />
+          {/* <img src={weatherImg(data.weather[0].main)} width="125" height="100" alt={data.weather[0].main} /> */}
         </div>
       </div>
     </div>
